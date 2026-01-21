@@ -12,9 +12,11 @@ Deployment: Heroku / Netlify
 WEEK 1: User Authentication & Role Management
 Goals
 
-✅ Secure login and registration
-✅ Role-based dashboards (User / Agent / Admin)
-✅ JWT protected routes
+Secure login and registration
+
+Role-based dashboards (User / Agent / Admin)
+
+JWT protected routes
 
 Backend Tasks (Day 1–3)
 
@@ -53,14 +55,16 @@ Implement protected routes
 
 Day 7: Demo
 
-Test user registration → login → role-based dashboard
+User registration → login → role-based dashboard
 
 WEEK 2: Ticket Creation & Categorization
 Goals
 
-✅ Users create support tickets
-✅ Ticket categorization and priority
-✅ Ticket status lifecycle
+Users create support tickets
+
+Ticket categorization and priority
+
+Ticket status lifecycle
 
 Backend Tasks (Day 1–3)
 
@@ -98,9 +102,11 @@ User creates ticket → views ticket list
 WEEK 3: Agent Assignment & Ticket Workflow
 Goals
 
-✅ Admin assigns tickets to agents
-✅ Agents manage assigned tickets
-✅ Controlled status transitions
+Admin assigns tickets to agents
+
+Agents manage assigned tickets
+
+Controlled status transitions
 
 Backend Tasks (Day 1–3)
 
@@ -129,14 +135,16 @@ Status update dropdown
 
 Day 7: Demo
 
-Admin assigns ticket → Agent updates status
+Admin assigns ticket → agent updates status
 
 WEEK 4: Ticket Conversation System
 Goals
 
-✅ User–Agent communication
-✅ Threaded ticket messages
-✅ Message history
+User–Agent communication
+
+Threaded ticket messages
+
+Message history
 
 Backend Tasks (Day 1–3)
 
@@ -166,14 +174,16 @@ Auto-scroll message view
 
 Day 7: Demo
 
-User sends message → Agent replies
+User sends message → agent replies
 
 WEEK 5: Real-Time Updates using WebSockets
 Goals
 
-✅ Live message updates
-✅ Instant ticket status changes
-✅ No page refresh
+Live message updates
+
+Instant ticket status changes
+
+No page refresh
 
 Backend Tasks (Day 1–4)
 
@@ -196,20 +206,23 @@ Toast notifications
 
 Day 7: Demo
 
-Agent replies → User receives instantly
+Agent replies → user receives instantly
 
 WEEK 6: SLA Tracking & Ticket History
 Goals
 
-✅ SLA deadline tracking
-✅ Overdue ticket identification
-✅ Ticket history view
+SLA deadline tracking
+
+Overdue ticket identification
+
+Ticket history view
 
 Backend Tasks (Day 1–3)
 
 Add SLA fields to tickets:
 
-sla_deadline, resolved_at
+sla_deadline
+resolved_at
 
 
 Endpoints:
@@ -232,9 +245,11 @@ Ticket crosses SLA → marked overdue
 WEEK 7: Admin Dashboard & Analytics
 Goals
 
-✅ System-wide analytics
-✅ Agent performance tracking
-✅ Resolution progress monitoring
+System-wide analytics
+
+Agent performance tracking
+
+Resolution progress monitoring
 
 Backend Tasks (Day 1–3)
 
@@ -267,9 +282,11 @@ Admin views analytics and progress goals
 WEEK 8: Feedback, Ratings & Final Demo
 Goals
 
-✅ User feedback after resolution
-✅ Agent ratings system
-✅ Project completion
+User feedback after resolution
+
+Agent ratings system
+
+Project completion
 
 Backend Tasks (Day 1–2)
 
@@ -298,6 +315,8 @@ Agent rating display
 
 Day 6–7: Final Demo
 
-✅ Complete user → agent → resolution → feedback flow
-✅ Bug fixes and documentation
-✅ Final presentation and submission
+Complete user → agent → resolution → feedback flow
+
+Bug fixes and documentation
+
+Final presentation and submission
