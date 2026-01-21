@@ -1,54 +1,27 @@
-# Online Ticket Support System
+Online Ticket Support System
+8-Week Development Roadmap (1 Module Per Week)
+Tech Stack
 
-## Project Overview
-The Online Ticket Support System is a role-based web application designed to manage customer support requests efficiently.  
-Users can raise support tickets, agents can resolve them through real-time communication, and administrators can monitor performance using analytics and SLA tracking.
+Frontend: React 18 + Tailwind CSS + Axios + React Router + Chart.js
+Backend: Spring Boot 3 + Spring Security (JWT) + Spring Data JPA
+Database: PostgreSQL 15
+Realtime: WebSocket (STOMP)
+Tools: Maven, Postman, Docker (optional)
+Deployment: Heroku / Netlify
 
----
+WEEK 1: User Authentication & Role Management
+Goals
 
-## Tech Stack
+✅ Secure login and registration
+✅ Role-based dashboards (User / Agent / Admin)
+✅ JWT protected routes
 
-**Frontend**
-- React 18
-- Tailwind CSS
-- Axios
-- React Router
-- Chart.js
+Backend Tasks (Day 1–3)
 
-**Backend**
-- Spring Boot 3
-- Spring Security (JWT)
-- Spring Data JPA
+Setup Spring Boot project (Maven)
 
-**Database**
-- PostgreSQL 15
+Create users table:
 
-**Realtime & Tools**
-- WebSocket (STOMP)
-- Maven
-- Postman
-- Docker (Optional)
-
-**Deployment**
-- Heroku / Netlify
-
----
-
-## 8-Week Development Roadmap
-
----
-
-### Week 1: User Authentication & Role Management
-
-#### Goals
-- Secure user registration and login
-- Role-based access (User, Agent, Admin)
-- JWT protected APIs
-
-#### Backend Tasks
-- Setup Spring Boot project with Maven
-- Create `users` table
-```sql
 CREATE TABLE users (
   id BIGSERIAL PRIMARY KEY,
   email VARCHAR UNIQUE,
@@ -56,15 +29,19 @@ CREATE TABLE users (
   role VARCHAR(20),
   created_at TIMESTAMP
 );
+
+
 Configure Spring Security with JWT
 
-API Endpoints:
+Endpoints:
 
 POST /api/auth/register
 POST /api/auth/login
 GET  /api/profile
-Frontend Tasks
-Create React application
+
+Frontend Tasks (Day 4–6)
+
+Create React app
 
 Install Tailwind CSS, Axios, React Router
 
@@ -74,19 +51,20 @@ Store JWT in localStorage
 
 Implement protected routes
 
-Outcome
-User registers → logs in → redirected to role-based dashboard
+Day 7: Demo
 
-Week 2: Ticket Creation & Categorization
+Test user registration → login → role-based dashboard
+
+WEEK 2: Ticket Creation & Categorization
 Goals
-Users can create support tickets
 
-Tickets categorized by priority and type
+✅ Users create support tickets
+✅ Ticket categorization and priority
+✅ Ticket status lifecycle
 
-Ticket status management
+Backend Tasks (Day 1–3)
 
-Backend Tasks
-Create tickets table
+Create tickets table:
 
 CREATE TABLE tickets (
   id BIGSERIAL PRIMARY KEY,
@@ -98,61 +76,71 @@ CREATE TABLE tickets (
   status VARCHAR,
   created_at TIMESTAMP
 );
-API Endpoints:
+
+
+Endpoints:
 
 POST /api/tickets
 GET  /api/tickets/my
-Frontend Tasks
+
+Frontend Tasks (Day 4–6)
+
 Pages: /create-ticket, /my-tickets
 
-Ticket creation form with dropdowns
+Ticket form with category and priority dropdown
 
-Ticket list with status badges
+Status badges (OPEN, IN_PROGRESS, RESOLVED)
 
-Outcome
+Day 7: Demo
+
 User creates ticket → views ticket list
 
-Week 3: Agent Assignment & Ticket Workflow
+WEEK 3: Agent Assignment & Ticket Workflow
 Goals
-Admin assigns tickets to agents
 
-Agents manage assigned tickets
+✅ Admin assigns tickets to agents
+✅ Agents manage assigned tickets
+✅ Controlled status transitions
 
-Controlled status transitions
+Backend Tasks (Day 1–3)
 
-Backend Tasks
-Create ticket_assignments table
+Create ticket_assignments table:
 
 CREATE TABLE ticket_assignments (
   id BIGSERIAL PRIMARY KEY,
   ticket_id BIGINT REFERENCES tickets,
   agent_id BIGINT REFERENCES users
 );
-API Endpoints:
+
+
+Endpoints:
 
 GET /api/agent/tickets
 PUT /api/tickets/{id}/assign
 PUT /api/tickets/{id}/status
-Frontend Tasks
-Page: /agent/dashboard
 
-Assigned ticket list
+Frontend Tasks (Day 4–6)
 
-Status update controls
+Pages: /agent/dashboard
 
-Outcome
-Admin assigns ticket → agent updates status
+Assigned tickets list
 
-Week 4: Ticket Conversation System
+Status update dropdown
+
+Day 7: Demo
+
+Admin assigns ticket → Agent updates status
+
+WEEK 4: Ticket Conversation System
 Goals
-User and agent communication
 
-Threaded ticket discussions
+✅ User–Agent communication
+✅ Threaded ticket messages
+✅ Message history
 
-Persistent message history
+Backend Tasks (Day 1–3)
 
-Backend Tasks
-Create ticket_messages table
+Create ticket_messages table:
 
 CREATE TABLE ticket_messages (
   id BIGSERIAL PRIMARY KEY,
@@ -161,86 +149,101 @@ CREATE TABLE ticket_messages (
   message TEXT,
   timestamp TIMESTAMP
 );
-API Endpoints:
+
+
+Endpoints:
 
 POST /api/tickets/{id}/message
 GET  /api/tickets/{id}/messages
-Frontend Tasks
-Ticket detail page with chat interface
 
-Message bubbles (User / Agent)
+Frontend Tasks (Day 4–6)
 
-Auto-scroll conversation view
+Ticket detail page with chat UI
 
-Outcome
-User sends message → agent replies
+Message bubbles for user and agent
 
-Week 5: Real-Time Updates using WebSockets
+Auto-scroll message view
+
+Day 7: Demo
+
+User sends message → Agent replies
+
+WEEK 5: Real-Time Updates using WebSockets
 Goals
-Live message updates
 
-Instant ticket status notifications
+✅ Live message updates
+✅ Instant ticket status changes
+✅ No page refresh
 
-No page refresh
+Backend Tasks (Day 1–4)
 
-Backend Tasks
 Configure WebSocket with STOMP
 
-Messaging topic:
+Topics:
 
 /topic/ticket/{id}
-Broadcast messages and status changes
 
-Frontend Tasks
-WebSocket client integration
+
+Broadcast messages and status updates
+
+Frontend Tasks (Day 5–6)
+
+WebSocket client setup
 
 Real-time message rendering
 
 Toast notifications
 
-Outcome
-Agent reply appears instantly to user
+Day 7: Demo
 
-Week 6: SLA Tracking & Ticket History
+Agent replies → User receives instantly
+
+WEEK 6: SLA Tracking & Ticket History
 Goals
-SLA deadline monitoring
 
-Overdue ticket detection
+✅ SLA deadline tracking
+✅ Overdue ticket identification
+✅ Ticket history view
 
-Ticket resolution history
+Backend Tasks (Day 1–3)
 
-Backend Tasks
-Add SLA fields to tickets
+Add SLA fields to tickets:
 
-sla_deadline
-resolved_at
-API Endpoints:
+sla_deadline, resolved_at
+
+
+Endpoints:
 
 GET /api/tickets/overdue
 GET /api/tickets/history
-Frontend Tasks
+
+Frontend Tasks (Day 4–6)
+
 SLA countdown timers
 
 Overdue ticket indicators
 
 Ticket timeline view
 
-Outcome
-Tickets exceeding SLA marked automatically
+Day 7: Demo
 
-Week 7: Admin Dashboard & Analytics
+Ticket crosses SLA → marked overdue
+
+WEEK 7: Admin Dashboard & Analytics
 Goals
-System analytics overview
 
-Agent performance tracking
+✅ System-wide analytics
+✅ Agent performance tracking
+✅ Resolution progress monitoring
 
-Resolution progress monitoring
+Backend Tasks (Day 1–3)
 
-Backend Tasks
-Admin API Endpoints:
+Admin endpoints:
 
 GET /api/admin/stats
 GET /api/admin/agents/performance
+
+
 Metrics:
 
 Total tickets
@@ -249,26 +252,28 @@ Resolved tickets
 
 Average resolution time
 
-Frontend Tasks
+Frontend Tasks (Day 4–6)
+
 Page: /admin/dashboard
 
 Charts and progress bars
 
 Agent workload table
 
-Outcome
-Admin monitors system performance visually
+Day 7: Demo
 
-Week 8: Feedback, Ratings & Final Demo
+Admin views analytics and progress goals
+
+WEEK 8: Feedback, Ratings & Final Demo
 Goals
-User feedback after ticket resolution
 
-Agent rating system
+✅ User feedback after resolution
+✅ Agent ratings system
+✅ Project completion
 
-Project finalization
+Backend Tasks (Day 1–2)
 
-Backend Tasks
-Create feedback table
+Create feedback table:
 
 CREATE TABLE feedback (
   id BIGSERIAL PRIMARY KEY,
@@ -276,16 +281,23 @@ CREATE TABLE feedback (
   rating INTEGER,
   comment TEXT
 );
-API Endpoints:
+
+
+Endpoints:
 
 POST /api/feedback
 GET  /api/agents/{id}/rating
-Frontend Tasks
-Feedback form for resolved tickets
+
+Frontend Tasks (Day 3–5)
+
+Feedback form on resolved tickets
 
 Star rating component
 
 Agent rating display
 
-Outcome
-User rates agent → admin views performance impact
+Day 6–7: Final Demo
+
+✅ Complete user → agent → resolution → feedback flow
+✅ Bug fixes and documentation
+✅ Final presentation and submission
