@@ -1,322 +1,83 @@
-Online Ticket Support System
-8-Week Development Roadmap (1 Module Per Week)
-Tech Stack
+Module 1: Project Initialization & Structure
+Setup: Initialize the project repository with Git for version control.
 
-Frontend: React 18 + Tailwind CSS + Axios + React Router + Chart.js
-Backend: Spring Boot 3 + Spring Security (JWT) + Spring Data JPA
-Database: PostgreSQL 15
-Realtime: WebSocket (STOMP)
-Tools: Maven, Postman, Docker (optional)
-Deployment: Heroku / Netlify
+Skeleton Building: Construct the semantic HTML structure for all core pages:
 
-WEEK 1: User Authentication & Role Management
-Goals
+Authentication (Login, Signup).
 
-Secure login and registration
+User Dashboard (Ticket List).
 
-Role-based dashboards (User / Agent / Admin)
+Ticket Creation Form.
 
-JWT protected routes
+Admin/Support Panel.
 
-Backend Tasks (Day 1–3)
+Deliverable: A complete, structured, multi-page static website skeleton ready for styling.
 
-Setup Spring Boot project (Maven)
+Module 2: UI/UX Design & Responsiveness
+Styling: Implement a modern, professional color palette using CSS variables.
 
-Create users table:
+Component Design: Design reusable UI cards for tickets with color-coded status badges (Open, Pending, Closed).
 
-CREATE TABLE users (
-  id BIGSERIAL PRIMARY KEY,
-  email VARCHAR UNIQUE,
-  password_hash VARCHAR,
-  role VARCHAR(20),
-  created_at TIMESTAMP
-);
+Responsive Layout: Build a mobile-first layout ensuring the dashboard works seamlessly on phones, tablets, and desktops.
 
+Deliverable: A polished, visually appealing, and fully responsive user interface.
 
-Configure Spring Security with JWT
+Module 3: Frontend Logic & DOM Manipulation
+Interactivity: Make the static UI functional using JavaScript.
 
-Endpoints:
+Validation: Implement client-side form validation for emails, passwords, and empty fields.
 
-POST /api/auth/register
-POST /api/auth/login
-GET  /api/profile
+Dynamic Rendering: Fetch dummy data to dynamically generate the ticket list and simulate status updates without page reloads.
 
-Frontend Tasks (Day 4–6)
+Deliverable: An interactive frontend prototype that validates user input and renders data dynamically.
 
-Create React app
+Module 4: Backend API Development
+Server Setup: Configure a Node.js and Express server.
 
-Install Tailwind CSS, Axios, React Router
+API Architecture: Build RESTful API endpoints to handle data requests:
 
-Pages: /login, /register, /profile
+POST /api/auth (User registration).
 
-Store JWT in localStorage
+GET /api/tickets (Fetch tickets).
 
-Implement protected routes
+POST /api/tickets (Create new ticket).
 
-Day 7: Demo
+Testing: Verify all API endpoints using Postman to ensure correct data flow.
 
-User registration → login → role-based dashboard
+Deliverable: A functional backend server capable of receiving and responding to HTTP requests.
 
-WEEK 2: Ticket Creation & Categorization
-Goals
+Module 5: Database Integration & Management
+Database Setup: Connect the application to a MongoDB database.
 
-Users create support tickets
+Schema Design: Model the data structure for Users and Tickets with proper relationships (linking tickets to specific users).
 
-Ticket categorization and priority
+CRUD Implementation: Refactor the API to save, read, update, and delete real data from the database.
 
-Ticket status lifecycle
+Deliverable: A fully connected application where user data and tickets persist permanently in the database.
 
-Backend Tasks (Day 1–3)
+Module 6: Authentication & Role-Based Access
+Security: Implement secure password hashing (Bcrypt) and JWT (JSON Web Tokens) for session management.
 
-Create tickets table:
+Role Logic: Create distinct user roles (Customer vs. Support Agent).
 
-CREATE TABLE tickets (
-  id BIGSERIAL PRIMARY KEY,
-  user_id BIGINT REFERENCES users,
-  subject VARCHAR,
-  description TEXT,
-  category VARCHAR,
-  priority VARCHAR,
-  status VARCHAR,
-  created_at TIMESTAMP
-);
+Route Protection: Build middleware to ensure Customers only see their own tickets, while Agents can view and manage all tickets.
 
+Deliverable: A secure system with login protection and authorized access levels.
 
-Endpoints:
+Module 7: Advanced Features & Communication
+Ticket Threads: Implement a commenting system allowing Users and Agents to discuss specific tickets.
 
-POST /api/tickets
-GET  /api/tickets/my
+Notifications: Integrate an email service (Nodemailer) to alert users when their ticket receives a reply.
 
-Frontend Tasks (Day 4–6)
+Search & Filter: Add functionality to filter tickets by status (e.g., "Show Closed") or search by Ticket ID.
 
-Pages: /create-ticket, /my-tickets
+Deliverable: A feature-rich application with conversation history and automated user alerts.
 
-Ticket form with category and priority dropdown
+Module 8: Optimization & Cloud Deployment
+Environment Security: Secure sensitive keys (API keys, DB URI) using Environment Variables.
 
-Status badges (OPEN, IN_PROGRESS, RESOLVED)
+Deployment: Deploy the frontend (e.g., Vercel/Netlify) and backend (e.g., Render/Railway) to the cloud.
 
-Day 7: Demo
+Live Testing: Perform final quality assurance checks on the live URL to fix bugs and optimize performance.
 
-User creates ticket → views ticket list
-
-WEEK 3: Agent Assignment & Ticket Workflow
-Goals
-
-Admin assigns tickets to agents
-
-Agents manage assigned tickets
-
-Controlled status transitions
-
-Backend Tasks (Day 1–3)
-
-Create ticket_assignments table:
-
-CREATE TABLE ticket_assignments (
-  id BIGSERIAL PRIMARY KEY,
-  ticket_id BIGINT REFERENCES tickets,
-  agent_id BIGINT REFERENCES users
-);
-
-
-Endpoints:
-
-GET /api/agent/tickets
-PUT /api/tickets/{id}/assign
-PUT /api/tickets/{id}/status
-
-Frontend Tasks (Day 4–6)
-
-Pages: /agent/dashboard
-
-Assigned tickets list
-
-Status update dropdown
-
-Day 7: Demo
-
-Admin assigns ticket → agent updates status
-
-WEEK 4: Ticket Conversation System
-Goals
-
-User–Agent communication
-
-Threaded ticket messages
-
-Message history
-
-Backend Tasks (Day 1–3)
-
-Create ticket_messages table:
-
-CREATE TABLE ticket_messages (
-  id BIGSERIAL PRIMARY KEY,
-  ticket_id BIGINT REFERENCES tickets,
-  sender_id BIGINT REFERENCES users,
-  message TEXT,
-  timestamp TIMESTAMP
-);
-
-
-Endpoints:
-
-POST /api/tickets/{id}/message
-GET  /api/tickets/{id}/messages
-
-Frontend Tasks (Day 4–6)
-
-Ticket detail page with chat UI
-
-Message bubbles for user and agent
-
-Auto-scroll message view
-
-Day 7: Demo
-
-User sends message → agent replies
-
-WEEK 5: Real-Time Updates using WebSockets
-Goals
-
-Live message updates
-
-Instant ticket status changes
-
-No page refresh
-
-Backend Tasks (Day 1–4)
-
-Configure WebSocket with STOMP
-
-Topics:
-
-/topic/ticket/{id}
-
-
-Broadcast messages and status updates
-
-Frontend Tasks (Day 5–6)
-
-WebSocket client setup
-
-Real-time message rendering
-
-Toast notifications
-
-Day 7: Demo
-
-Agent replies → user receives instantly
-
-WEEK 6: SLA Tracking & Ticket History
-Goals
-
-SLA deadline tracking
-
-Overdue ticket identification
-
-Ticket history view
-
-Backend Tasks (Day 1–3)
-
-Add SLA fields to tickets:
-
-sla_deadline
-resolved_at
-
-
-Endpoints:
-
-GET /api/tickets/overdue
-GET /api/tickets/history
-
-Frontend Tasks (Day 4–6)
-
-SLA countdown timers
-
-Overdue ticket indicators
-
-Ticket timeline view
-
-Day 7: Demo
-
-Ticket crosses SLA → marked overdue
-
-WEEK 7: Admin Dashboard & Analytics
-Goals
-
-System-wide analytics
-
-Agent performance tracking
-
-Resolution progress monitoring
-
-Backend Tasks (Day 1–3)
-
-Admin endpoints:
-
-GET /api/admin/stats
-GET /api/admin/agents/performance
-
-
-Metrics:
-
-Total tickets
-
-Resolved tickets
-
-Average resolution time
-
-Frontend Tasks (Day 4–6)
-
-Page: /admin/dashboard
-
-Charts and progress bars
-
-Agent workload table
-
-Day 7: Demo
-
-Admin views analytics and progress goals
-
-WEEK 8: Feedback, Ratings & Final Demo
-Goals
-
-User feedback after resolution
-
-Agent ratings system
-
-Project completion
-
-Backend Tasks (Day 1–2)
-
-Create feedback table:
-
-CREATE TABLE feedback (
-  id BIGSERIAL PRIMARY KEY,
-  ticket_id BIGINT REFERENCES tickets,
-  rating INTEGER,
-  comment TEXT
-);
-
-
-Endpoints:
-
-POST /api/feedback
-GET  /api/agents/{id}/rating
-
-Frontend Tasks (Day 3–5)
-
-Feedback form on resolved tickets
-
-Star rating component
-
-Agent rating display
-
-Day 6–7: Final Demo
-
-Complete user → agent → resolution → feedback flow
-
-Bug fixes and documentation
-
-Final presentation and submission
+Final Deliverable: A production-ready, live link to the full-stack Online Ticket Support System.
