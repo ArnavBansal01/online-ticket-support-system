@@ -1,0 +1,14 @@
+{
+  "properties": [
+    {
+      "name": "app.cors.allowed-origin",
+      "type": "java.lang.String",
+      "description": "Allowed CORS origin for frontend access."
+    },
+    {
+      "name": "app.user-service.base-url",
+      "type": "java.lang.String",
+      "description": "Base URL of user-service for cross-service validation calls."
+    }
+  ]
+}
