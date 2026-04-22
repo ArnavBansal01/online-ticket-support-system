@@ -69,11 +69,11 @@ The system is split into four parts:
 
 The User Service seeds these accounts automatically on startup:
 
-| Role | Email | Password |
-| --- | --- | --- |
-| ADMIN | admin@test.com | admin123 |
-| AGENT | agent@test.com | agent123 |
-| CUSTOMER | user@test.com | user123 |
+| Role     | Email          | Password |
+| -------- | -------------- | -------- |
+| ADMIN    | admin@test.com | admin123 |
+| AGENT    | agent@test.com | agent123 |
+| CUSTOMER | user@test.com  | user123  |
 
 ## Local Setup
 
